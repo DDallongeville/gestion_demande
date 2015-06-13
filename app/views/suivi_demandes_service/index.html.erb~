@@ -1,0 +1,46 @@
+<h2>Suivi des demandes de service</h2>
+<p><%= link_to 'Nouvelle demande', { :action => 'new', :id => @project[:id] } %></p>
+<table>
+  <tr>
+    <th>Numérotation</th>
+    <th>Référence de la demande</th>
+    <th>Date de réception de la demande</th>
+    <th>Date de prise en compte</th>
+    <th>Date du statut final</th>
+    <th>Statut de la demande</th>
+    <th>Société</th>
+    <th>BU</th>
+    <th>Nom du projet</th>
+    <th>Nom et Prénom du demandeur</th>
+    <th>Fonction du demandeur</th>
+    <th>Nom et Prénom du valideur</th>
+    <th>Fonction du valideur</th>
+    <th>Ressources DQI</th>
+    <th>Domaine d'activité</th>
+    <th>Offre de service</th>
+    <th>Charge DQI</th>
+    <th>Remarques</th>
+  </tr>
+  <% @suivi_demandes_service.each do |suivi_demandes_service| %>
+  <tr>
+    <td><%= suivi_demandes_service.id %></td>
+    <td><%= suivi_demandes_service.ref_demande %></td>
+    <td><%= suivi_demandes_service.dt_reception_demande %></td>
+    <td><%= suivi_demandes_service.dt_analyse %></td>
+    <td><%= suivi_demandes_service.dt_statut_final %></td>
+    <td><%= suivi_demandes_service.statut_demande %></td>
+    <td><%= suivi_demandes_service.societe %></td>
+    <td><%= suivi_demandes_service.bu %></td>
+    <td><%= suivi_demandes_service.nom_projet %></td>
+    <td><%= suivi_demandes_service.nom_demandeur %></td>
+    <td><%= suivi_demandes_service.fonction_demandeur %></td>
+    <td><%= suivi_demandes_service.nom_valideur %></td>
+    <td><%= suivi_demandes_service.fonction_valideur %></td>
+    <td><%= suivi_demandes_service.ressource_dqi %></td>
+    <td><%= suivi_demandes_service.activite %></td>
+    <td><%= suivi_demandes_service.offre_service %></td>
+    <td><%= suivi_demandes_service.charge %></td>
+    <td><%= suivi_deamndes_service.remarque %></td>
+  </tr>
+  <% end %>
+</table>

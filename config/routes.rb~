@@ -1,0 +1,3 @@
+# Plugin's routes
+# See: http://guides.rubyonrails.org/routing.html
+get 'projects/:id/suivi_demandes_service/', to: 'suivi_demandes_service#index', as: :suivi_demandes_service

@@ -1,0 +1,23 @@
+class CreateSuiviDemandesServices < ActiveRecord::Migration
+  def change
+    create_table :suivi_demandes_services do |t|
+      t.string :ref_demande, :null => false
+      t.date :dt_reception_demande
+      t.date :dt_analyse
+      t.date :dt_statut_final
+      t.string :statut_demande
+      t.string :societe
+      t.string :bu
+      t.string :nom_projet
+      t.string :nom_demandeur
+      t.string :fonction_demandeur
+      t.string :nom_valideur
+      t.string :fonction_valideur
+      t.string :ressource_dqi
+      t.string :activite
+      t.string :offre_service
+      t.integer :charge
+      t.string :remarque
+    end
+  end
+end
