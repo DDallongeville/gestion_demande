@@ -3,6 +3,7 @@ class SuiviDemandesService < ActiveRecord::Base
   attr_accessible :ref_demande, :dt_reception_demande, :statut_demande, :societe, :bu, :nom_projet, :nom_demandeur, :fonction_demandeur, :activite, :offre_service, :charge, :remarque
   def self.nouveau_suivi(suivi,nom_projet)
     nouveau_suivi = self.new do |n|
+      n.fonction_demandeur = suivi.fonction_demandeur
       n.ref_demande = suivi.ref_demande
       n.dt_reception_demande = Date.current()
       n.statut_demande = "Nouvelle"
@@ -13,7 +14,7 @@ class SuiviDemandesService < ActiveRecord::Base
 #      n.fonction_demandeur = User.current.role
       n.activite = suivi.activite
       n.offre_service = suivi.offre_service
-      n.charge = suivi.charge
+#      n.charge = suivi.charge
       n.remarque = suivi.remarque
     end
   end
