@@ -1,0 +1,63 @@
+<h2>Suivi des demandes de service</h2>
+<p><%= link_to 'Retour à la liste des suivis', { :action => 'index', :id => @project[:id] } %></p>
+<table>
+  <%= form_for @suivi, :url => {:action => "save_analyse"} do |suivi| %>
+  <tr>
+    <th>Numérotation</th>
+    <td><%= suivi.text_field :id,:readonly => true %></td>
+    <th>Référence de la demande</th>
+    <td><%= suivi.text_field :ref_demande,:readonly => true %></td>
+  </tr>
+  <tr>
+    <th>Date de réception de la demande</th>
+    <td><%= suivi.text_field :dt_reception_demande,:readonly => true %></td>
+    <th>Date de prise en compte</th>
+    <td><%= suivi.text_field :dt_analyse,:readonly => true %></td>
+  </tr>
+  <tr>    
+    <th>Date du statut final</th>
+    <td><%= suivi.text_field :dt_statut_final,:readonly => true %></td>
+    <th>Statut de la demande</th>
+    <td><%= suivi.select :statut_demande, options_for_select(["En cours d'analyse","Valider","Refuser"]) %></td>
+  </tr>
+  <tr>
+    <th>Société</th>
+    <td><%= suivi.text_field :societe,:readonly => true %></td>
+    <th>BU</th>
+    <td><%= suivi.text_field :bu,:readonly => true %></td>
+  </tr>
+  <tr>
+    <th>Nom du projet</th>
+    <td><%= suivi.text_field :nom_projet,:readonly => true %></td>
+    <th>Nom et Prénom du demandeur</th>
+    <td><%= suivi.text_field :nom_demandeur,:readonly => true %></td>
+  </tr>
+  <tr>
+    <th>Fonction du demandeur</th>
+    <td><%= suivi.text_field :fonction_demandeur,:readonly => true %></td>
+    <th>Nom et Prénom du valideur</th>
+    <td><%= User.current().name %></td>
+  </tr>
+  <tr>
+    <th>Fonction du valideur</th>
+    <td><%= suivi.text_field :fonction_valideur %></td>
+    <th>Ressources DQI</th>
+    <td><%= suivi.text_field :ressource_dqi %></td>
+  </tr>
+  <tr>
+    <th>Domaine d'activité</th>
+    <td><%= suivi.text_field :activite,:readonly => true %></td>
+    <th>Offre de service</th>
+    <td><%= suivi.text_field :offre_service,:readonly => true %></td>
+  </tr>
+  <tr>
+    <th>Charge DQI</th>
+    <td><%= suivi.text_field :charge %></td>
+    <th>Remarques</th>
+    <td><%= suivi.text_area :remarque %></td>
+  </tr>
+  <tr>
+    <td><%= suivi.submit "Valider" %></td>
+  </tr>
+  <% end %>
+</table>

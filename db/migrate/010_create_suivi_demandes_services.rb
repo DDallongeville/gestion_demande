@@ -19,5 +19,6 @@ class CreateSuiviDemandesServices < ActiveRecord::Migration
       t.integer :charge
       t.string :remarque
     end
+    add_index :suivi_demandes_services, :ref_demande, unique: true
   end
 end

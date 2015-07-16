@@ -1,0 +1,72 @@
+﻿<%= form_for @suivi_service, :url => {:controller => 'gd', :action => "create"} do |f| %>
+  <% if @suivi_service.errors.any? %>
+  <div id="errorExplanation">
+    <h2><%= pluralize(@suivi_service.errors.count, "error") %> prohibited this post from being saved:</h2>
+    <ul>
+    <% @suivi_service.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Reference_Service %><br />
+    <%= f.text_field :Reference_Service %>
+  </div>
+  <div class="field">
+    <%= f.label :Date_signature_contrat %><br />
+    <%= f.date_select :Date_signature_contrat %>
+  </div>
+  <div class="field">
+    <%= f.label :Date_debut_service %><br />
+    <%= f.date_select :Date_debut_service %>
+  </div>
+  <div class="field">
+    <%= f.label :Date_previsionnelle_fin_service %><br />
+    <%= f.date_select :Date_previsionnelle_fin_service %>
+  </div>
+  <div class="field">
+    <%= f.label :Date_fin_service %><br />
+    <%= f.date_select :Date_fin_service %>
+  </div>
+  <div class="field">
+    <%= f.label :Statut_service %><br />
+    <%= f.text_field :Statut_service %>
+  </div>
+  <div class="field">
+    <%= f.label :Societe %><br />
+    <%= f.text_field :Societe %>
+  </div>
+  <div class="field">
+    <%= f.label :Entite %><br />
+    <%= f.text_field :Entite %>
+  </div>
+  <div class="field">
+    <%= f.label "Fonction" %><br />
+    <%= f.text_field :Fonction_demandeur %>
+  </div>
+  <div class="field">
+    <%= f.label :Ressources_DQI %><br />
+    <%= f.text_field :Ressources_DQI %>
+  </div>
+  <div class="field">
+    <%= f.label :Domaine_activite %><br />
+    <%= f.text_field :Domaine_activite %>
+  </div>
+  <div class="field">
+    <%= f.label :Offre_service %><br />
+    <%= f.text_field :Offre_service %>
+  </div>
+  <div class="field">
+    <%= f.label :Charges_DQI %><br />
+    <%= f.text_field :Charges_DQI %>
+  </div>
+  <div class="field">
+    <%= f.label :Remarques %><br />
+    <%= f.text_field :Remarques %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

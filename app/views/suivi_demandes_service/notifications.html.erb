@@ -1,0 +1,55 @@
+﻿<html>
+
+<head> 
+
+<style type="text/css"> 
+table
+{
+    border-collapse: collapse; 
+}
+td, th
+{
+    border: 1px solid black;
+}
+
+</style>
+</head>
+<body>
+<div class="tabs">
+  <ul>
+	<li><%= link_to 'Suivi demandes de service', { :action => 'index', :id => @project[:id] }, :id => "tab-suivi_demandes_service", :onclick => "showTab(&#39;suivi_services_demande&#39;, this.href); this.blur(); return false;" %></li>
+	<li><%= link_to 'Notifications', { :action => 'notifications', :id => @project[:id] }, :class => "selected", :id => "tab-notifications", :onclick => "showTab(&#39;notifications&#39;, this.href); this.blur(); return false;" %></li>
+	<li><%= link_to 'Suivi de services', { :controller => 'gd', :action => 'index', :id => @project[:id] }, :id => "tab-suivi_services", :onclick => "showTab(&#39;suivi_services&#39;, this.href); this.blur(); return false;" %></li>
+  </ul>
+</div>
+
+  <h2>Notifications</h2>
+	<table>
+	  <tr>
+		<th>Notifications</th>
+	  </tr>
+	  <% @notifications.each do |notif| %>
+	  <% if notif.new_status == "Nouvelle" %>
+	  <tr>
+		<td><%= notif.role%> a créée la demande <%= notif.ref_suivi %> à la date du <%= notif.dt_notification %></td>
+	  </tr>
+	  <% end %>
+	  <% if notif.new_status == "Valider" %>
+	  <tr>
+		<td><%= notif.role %> a validé la demande <%= notif.ref_suivi %> à la date du <%= notif.dt_notification %></td>
+	  </tr>
+	  <% end %>
+	  <% if notif.new_status == "Refuser" %>
+	  <tr>
+		<td><%= notif.role %> a refusé la demande <%= notif.ref_suivi %> à la date du <%= notif.dt_notification %></td>
+	  </tr>
+	  <% end %>
+	  <% if notif.new_status == "En cours d'analyse" %>
+	  <tr>
+		<td><%= notif.role %> est en train d'analyser la demande <%= notif.ref_suivi %> depuis le <%= notif.dt_notification %></td>
+	  </tr>
+	  <% end %>
+	  <% end %>
+	</table>
+	</body>
+</html>

@@ -9,36 +9,35 @@
     </ul>
   </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :ref_demande %><br />
+    <%= f.label "Votre fonction" %><br />
+    <%= f.text_field :fonction_demandeur %>
+  </div>
+  <div class="field">
+    <%= f.label "Référence de la demande" %><br />
     <%= f.text_field :ref_demande %>
   </div>
   <div class="field">
-    <%= f.label :societe %><br />
+    <%= f.label "Nom de votre société" %><br />
     <%= f.text_field :societe %>
   </div>
   <div class="field">
-    <%= f.label :bu %><br />
+    <%= f.label "Nom de votre BU" %><br />
     <%= f.text_field :bu %>
   </div>
   <div class="field">
-    <%= f.label :activite %><br />
+    <%= f.label "Domaine d'activité" %><br />
     <%= f.select :activite, options_for_select(["AUB'ENERGY CMMI N2", "AUB'ENERGY CMMI N3", "SECURITE", "ASSURANCE QUALITE", "RAO", "SERVICE SPECIFIQUE"]) %>
   </div>
   <div class="field">
-    <%= f.label :offre_service %><br />
-    <%= f.text_field :offre_service %>
+    <%= f.label "Offre de service" %><br />
+    <%= f.select :offre_service, options_for_select(["AUDIT", "ETAT DES LIEUX", "FORMATION/SENSIBILATION", "DEPLOIEMENT/OUTILLAGE", "ACCOMPAGNEMENT"]) %>
   </div>
   <div class="field">
-    <%= f.label :charge %><br />
-    <%= f.text_field :charge %>
-  </div>
-  <div class="field">
-    <%= f.label :remarque %><br />
+    <%= f.label "Remarque" %><br />
     <%= f.text_field :remarque %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Nouvelle Demande" %>
   </div>
 <% end %>

@@ -1,46 +1,231 @@
-<h2>Suivi des demandes de service</h2>
-<p><%= link_to 'Nouvelle demande', { :action => 'new', :id => @project[:id] } %></p>
-<table>
-  <tr>
-    <th>Numérotation</th>
-    <th>Référence de la demande</th>
-    <th>Date de réception de la demande</th>
-    <th>Date de prise en compte</th>
-    <th>Date du statut final</th>
-    <th>Statut de la demande</th>
-    <th>Société</th>
-    <th>BU</th>
-    <th>Nom du projet</th>
-    <th>Nom et Prénom du demandeur</th>
-    <th>Fonction du demandeur</th>
-    <th>Nom et Prénom du valideur</th>
-    <th>Fonction du valideur</th>
-    <th>Ressources DQI</th>
-    <th>Domaine d'activité</th>
-    <th>Offre de service</th>
-    <th>Charge DQI</th>
-    <th>Remarques</th>
-  </tr>
-  <% @suivi_demandes_service.each do |suivi| %>
-  <tr>
-    <td><%= suivi.id %></td>
-    <td><%= suivi.ref_demande %></td>
-    <td><%= suivi.dt_reception_demande %></td>
-    <td><%= suivi.dt_analyse %></td>
-    <td><%= suivi.dt_statut_final %></td>
-    <td><%= suivi.statut_demande %></td>
-    <td><%= suivi.societe %></td>
-    <td><%= suivi.bu %></td>
-    <td><%= suivi.nom_projet %></td>
-    <td><%= suivi.nom_demandeur %></td>
-    <td><%= suivi.fonction_demandeur %></td>
-    <td><%= suivi.nom_valideur %></td>
-    <td><%= suivi.fonction_valideur %></td>
-    <td><%= suivi.ressource_dqi %></td>
-    <td><%= suivi.activite %></td>
-    <td><%= suivi.offre_service %></td>
-    <td><%= suivi.charge %></td>
-    <td><%= suivi.remarque %></td>
-  </tr>
-  <% end %>
-</table>
+﻿<html>
+
+<head> 
+
+<style type="text/css"> 
+table
+{
+    border-collapse: collapse; 
+}
+td, th
+{
+    border: 1px solid black;
+}
+
+</style>
+</head>
+<body>
+<div class="tabs">
+  <ul>
+	<li><%= link_to 'Suivi demandes de service', { :action => 'index', :id => @project[:id] },:class => "selected", :id => "tab-suivi_demandes_service", :onclick => "showTab(&#39;suivi_services_demande&#39;, this.href); this.blur(); return false;" %></li>
+	<li><%= link_to 'Notifications', { :action => 'notifications', :id => @project[:id] }, :id => "tab-notifications", :onclick => "showTab(&#39;notifications&#39;, this.href); this.blur(); return false;" %></li>
+	<li><%= link_to 'Suivi de services', { :controller => 'gd', :action => 'index', :id => @project[:id] }, :id => "tab-suivi_services", :onclick => "showTab(&#39;suivi_services&#39;, this.href); this.blur(); return false;" %></li>
+  </ul>
+</div>
+
+  <h2>Suivi des demandes de service</h2>
+  <p><%= link_to 'Nouvelle demande', { :action => 'new', :id => @project[:id] } %></p>
+
+	<table>
+		<caption> Nouvelles demandes </caption>
+	  <tr>
+		<th>Numérotation</th>
+		<th>Référence de la demande</th>
+		<th>Date de réception de la demande</th>
+		<th>Date de prise en compte</th>
+		<th>Date du statut final</th>
+		<th>Statut de la demande</th>
+		<th>Société</th>
+		<th>BU</th>
+		<th>Nom du projet</th>
+		<th>Nom et Prénom du demandeur</th>
+		<th>Fonction du demandeur</th>
+		<th>Nom et Prénom du valideur</th>
+		<th>Fonction du valideur</th>
+		<th>Ressources DQI</th>
+		<th>Domaine d'activité</th>
+		<th>Offre de service</th>
+		<th>Charge DQI</th>
+		<th>Remarques</th>
+	  </tr>
+	  <% @suivi_demandes_service.each do |suivi| %>
+	  <% if suivi.statut_demande == "Nouvelle" %>
+	  <tr>
+		<td><%= suivi.id %></td>
+		<td><%= suivi.ref_demande %></td>
+		<td><%= suivi.dt_reception_demande %></td>
+		<td><%= suivi.dt_analyse %></td>
+		<td><%= suivi.dt_statut_final %></td>
+		<td><%= suivi.statut_demande %></td>
+		<td><%= suivi.societe %></td>
+		<td><%= suivi.bu %></td>
+		<td><%= suivi.nom_projet %></td>
+		<td><%= suivi.nom_demandeur %></td>
+		<td><%= suivi.fonction_demandeur %></td>
+		<td><%= suivi.nom_valideur %></td>
+		<td><%= suivi.fonction_valideur %></td>
+		<td><%= suivi.ressource_dqi %></td>
+		<td><%= suivi.activite %></td>
+		<td><%= suivi.offre_service %></td>
+		<td><%= suivi.charge %></td>
+		<td><%= suivi.remarque %></td>
+		<td><%= link_to 'Analyser', { :action => 'analyser', :id => @project[:id], :id_suivi => suivi.id } %>
+		</br>
+		<%= link_to 'Modifier', { :action => 'modif', :id => @project[:id], :id_suivi => suivi.id } %>
+		</td>
+	  </tr>
+	  <% end %>
+	  <% end %>
+	</table>
+	</br>
+	</br>
+
+	<table>
+		<caption> Demandes en cours d'analyse </caption>
+	  <tr>
+		<th>Numérotation</th>
+		<th>Référence de la demande</th>
+		<th>Date de réception de la demande</th>
+		<th>Date de prise en compte</th>
+		<th>Date du statut final</th>
+		<th>Statut de la demande</th>
+		<th>Société</th>
+		<th>BU</th>
+		<th>Nom du projet</th>
+		<th>Nom et Prénom du demandeur</th>
+		<th>Fonction du demandeur</th>
+		<th>Nom et Prénom du valideur</th>
+		<th>Fonction du valideur</th>
+		<th>Ressources DQI</th>
+		<th>Domaine d'activité</th>
+		<th>Offre de service</th>
+		<th>Charge DQI</th>
+		<th>Remarques</th>
+	  </tr>
+	  <% @suivi_demandes_service.each do |suivi| %>
+	  <% if suivi.statut_demande == "En cours d'analyse" %>
+	  <tr>
+		<td><%= suivi.id %></td>
+		<td><%= suivi.ref_demande %></td>
+		<td><%= suivi.dt_reception_demande %></td>
+		<td><%= suivi.dt_analyse %></td>
+		<td><%= suivi.dt_statut_final %></td>
+		<td><%= suivi.statut_demande %></td>
+		<td><%= suivi.societe %></td>
+		<td><%= suivi.bu %></td>
+		<td><%= suivi.nom_projet %></td>
+		<td><%= suivi.nom_demandeur %></td>
+		<td><%= suivi.fonction_demandeur %></td>
+		<td><%= suivi.nom_valideur %></td>
+		<td><%= suivi.fonction_valideur %></td>
+		<td><%= suivi.ressource_dqi %></td>
+		<td><%= suivi.activite %></td>
+		<td><%= suivi.offre_service %></td>
+		<td><%= suivi.charge %></td>
+		<td><%= suivi.remarque %></td>
+		<td><%= link_to 'Analyser', { :action => 'analyser', :id => @project[:id], :id_suivi => suivi.id } %></td>
+		<% end %>
+	  </tr>
+	  <% end %>
+	</table>
+	</br>
+	</br>
+	<table>
+		<caption> Demandes Validées </caption>
+	  <tr>
+		<th>Numérotation</th>
+		<th>Référence de la demande</th>
+		<th>Date de réception de la demande</th>
+		<th>Date de prise en compte</th>
+		<th>Date du statut final</th>
+		<th>Statut de la demande</th>
+		<th>Société</th>
+		<th>BU</th>
+		<th>Nom du projet</th>
+		<th>Nom et Prénom du demandeur</th>
+		<th>Fonction du demandeur</th>
+		<th>Nom et Prénom du valideur</th>
+		<th>Fonction du valideur</th>
+		<th>Ressources DQI</th>
+		<th>Domaine d'activité</th>
+		<th>Offre de service</th>
+		<th>Charge DQI</th>
+		<th>Remarques</th>
+	  </tr>
+	  <% @suivi_demandes_service.each do |suivi| %>
+	  <% if suivi.statut_demande == "Valider" %>
+	  <tr>
+		<td><%= suivi.id %></td>
+		<td><%= suivi.ref_demande %></td>
+		<td><%= suivi.dt_reception_demande %></td>
+		<td><%= suivi.dt_analyse %></td>
+		<td><%= suivi.dt_statut_final %></td>
+		<td><%= suivi.statut_demande %></td>
+		<td><%= suivi.societe %></td>
+		<td><%= suivi.bu %></td>
+		<td><%= suivi.nom_projet %></td>
+		<td><%= suivi.nom_demandeur %></td>
+		<td><%= suivi.fonction_demandeur %></td>
+		<td><%= suivi.nom_valideur %></td>
+		<td><%= suivi.fonction_valideur %></td>
+		<td><%= suivi.ressource_dqi %></td>
+		<td><%= suivi.activite %></td>
+		<td><%= suivi.offre_service %></td>
+		<td><%= suivi.charge %></td>
+		<td><%= suivi.remarque %></td>
+		<% end %>
+	  </tr>
+	  <% end %>
+	</table>
+	</br>
+	</br>
+
+	<table>
+		<caption> Demandes Refusées </caption>
+	  <tr>
+		<th>Numérotation</th>
+		<th>Référence de la demande</th>
+		<th>Date de réception de la demande</th>
+		<th>Date de prise en compte</th>
+		<th>Date du statut final</th>
+		<th>Statut de la demande</th>
+		<th>Société</th>
+		<th>BU</th>
+		<th>Nom du projet</th>
+		<th>Nom et Prénom du demandeur</th>
+		<th>Fonction du demandeur</th>
+		<th>Nom et Prénom du valideur</th>
+		<th>Fonction du valideur</th>
+		<th>Ressources DQI</th>
+		<th>Domaine d'activité</th>
+		<th>Offre de service</th>
+		<th>Charge DQI</th>
+		<th>Remarques</th>
+	  </tr>
+	  <% @suivi_demandes_service.each do |suivi| %>
+	  <% if suivi.statut_demande == "Refuser" %>
+	  <tr>
+		<td><%= suivi.id %></td>
+		<td><%= suivi.ref_demande %></td>
+		<td><%= suivi.dt_reception_demande %></td>
+		<td><%= suivi.dt_analyse %></td>
+		<td><%= suivi.dt_statut_final %></td>
+		<td><%= suivi.statut_demande %></td>
+		<td><%= suivi.societe %></td>
+		<td><%= suivi.bu %></td>
+		<td><%= suivi.nom_projet %></td>
+		<td><%= suivi.nom_demandeur %></td>
+		<td><%= suivi.fonction_demandeur %></td>
+		<td><%= suivi.nom_valideur %></td>
+		<td><%= suivi.fonction_valideur %></td>
+		<td><%= suivi.ressource_dqi %></td>
+		<td><%= suivi.activite %></td>
+		<td><%= suivi.offre_service %></td>
+		<td><%= suivi.charge %></td>
+		<td><%= suivi.remarque %></td>
+		<% end %>
+	  </tr>
+	  <% end %>
+	</table>
+	</body>
+</html>

@@ -1,7 +1,7 @@
 class CreateSuiviDemandesServices < ActiveRecord::Migration
   def change
     create_table :suivi_demandes_services do |t|
-      t.integer :ref_demande, :null => false
+      t.string :ref_demande, :null => false
       t.date :dt_reception_demande
       t.date :dt_analyse
       t.date :dt_statut_final
@@ -19,5 +19,6 @@ class CreateSuiviDemandesServices < ActiveRecord::Migration
       t.integer :charge
       t.string :remarque
     end
+    add_index :suivi_services_demandes, :ref_demande, unique: true
   end
 end

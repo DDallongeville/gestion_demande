@@ -1,0 +1,39 @@
+<h2>Suivi des demandes de service</h2>
+<p><%= link_to 'Retour à la liste des suivis', { :action => 'index', :id => @project[:id] } %></p>
+<table>
+  <%= form_for @suivi, :url => {:action => "save_modif"} do |suivi| %>
+  <tr>
+    <th>Numérotation</th>
+    <td><%= suivi.text_field :id,:readonly => true %></td>
+    <th>Référence de la demande</th>
+    <td><%= suivi.text_field :ref_demande %></td>
+  </tr>
+  <tr>
+    <th>Date de réception de la demande</th>
+    <td><%= suivi.text_field :dt_reception_demande,:readonly => true %></td>
+    <th>Société</th>
+    <td><%= suivi.text_field :societe %></td>    
+  </tr>
+  <tr>
+    <th>BU</th>
+    <td><%= suivi.text_field :bu %></td>
+    <th>Nom du projet</th>
+    <td><%= suivi.text_field :nom_projet,:readonly => true %></td>
+  </tr>
+  <tr>
+    <th>Nom et Prénom du demandeur</th>
+    <td><%= suivi.text_field :nom_demandeur,:readonly => true %></td>
+    <th>Fonction du demandeur</th>
+    <td><%= suivi.text_field :fonction_demandeur %></td>
+  </tr>
+  <tr>
+    <th>Domaine d'activité</th>
+    <td><%= suivi.select :activite, options_for_select(["AUB'ENERGY CMMI N2", "AUB'ENERGY CMMI N3", "SECURITE", "ASSURANCE QUALITE", "RAO", "SERVICE SPECIFIQUE"]) %></td>
+    <th>Offre de service</th>
+    <td><%= suivi.select :offre_service, options_for_select(["AUDIT", "ETAT DES LIEUX", "FORMATION/SENSIBILATION", "DEPLOIEMENT/OUTILLAGE", "ACCOMPAGNEMENT"]) %></td>
+  </tr>
+  <tr>
+    <td><%= suivi.submit "Valider" %></td>
+  </tr>
+  <% end %>
+</table>

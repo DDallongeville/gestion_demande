@@ -1,0 +1,91 @@
+﻿<div class="tabs">
+  <ul>
+	<li><%= link_to 'Suivi demandes de service', { :controller => 'suivi_demandes_service', :action => 'index', :id => @project[:id] }, :id => "tab-suivi_demandes_service", :onclick => "showTab(&#39;suivi_services_demande&#39;, this.href); this.blur(); return false;" %></li>
+	<li><%= link_to 'Notifications', { :controller => 'suivi_demandes_service', :action => 'notifications', :id => @project[:id] }, :id => "tab-notifications", :onclick => "showTab(&#39;notifications&#39;, this.href); this.blur(); return false;" %></li>
+	<li><%= link_to 'Suivi de services', { :controller => 'gd', :action => 'index', :id => @project[:id] },:class => "selected", :id => "tab-suivi_services", :onclick => "showTab(&#39;suivi_services&#39;, this.href); this.blur(); return false;" %></li>
+  </ul>
+</div>
+
+<h2>Suivi</h2>
+<h3>Liste des demandes</h3>
+<p><%= link_to 'Nouvelle demande', { :controller => 'gd', :action => 'new', :id => @project[:id] } %></p>
+
+<div class="autoscroll">
+<table class="list services">
+  <tr>
+    <th>| # |</th>
+    <th><%= t('services.attributes.Reference_Service |') %></th>
+    <th><%= t('services.attributes.Date_signature_contrat |') %></th>
+    <th><%= t('services.attributes.Date_debut_contrat |') %></th>
+    <th><%= t('services.attributes.Date_debut_service |') %></th>
+    <th><%= t('services.attributes.Date_previsionnelle_fin_service |') %></th>
+    <th><%= t('services.attributes.Date_fin_service |') %></th>
+    <th><%= t('services.attributes.Statut_service |') %></th>
+    <th><%= t('services.attributes.Societe |') %></th>
+    <th><%= t('services.attributes.Entite |') %></th>
+    <th><%= t('services.attributes.Nom_prenom_demandeur |') %></th>
+    <th><%= t('services.attributes.Fonction_demandeur |') %></th>
+    <th><%= t('services.attributes.Ressources_DQI |') %></th>
+    <th><%= t('services.attributes.Domaine_activite |') %></th>
+    <th><%= t('services.attributes.Offre_service |') %></th>
+    <th><%= t('services.attributes.Charges_DQI |') %></th>
+    <th><%= t('services.attributes.Remarques |') %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+</table>
+
+</div>
+
+<h3>Liste des services</h3>
+<p><%= link_to 'Nouveau service', { :action => 'new', :id => @project[:id] } %></p>
+
+<div class="autoscroll">
+<table class="list services">
+  <tr>
+    <th>| # |</th>
+    <th><%= t('services.attributes.Reference_Service |') %></th>
+    <th><%= t('services.attributes.Date_signature_contrat |') %></th>
+    <th><%= t('services.attributes.Date_debut_contrat |') %></th>
+    <th><%= t('services.attributes.Date_debut_service |') %></th>
+    <th><%= t('services.attributes.Date_previsionnelle_fin_service |') %></th>
+    <th><%= t('services.attributes.Date_fin_service |') %></th>
+    <th><%= t('services.attributes.Statut_service |') %></th>
+    <th><%= t('services.attributes.Societe |') %></th>
+    <th><%= t('services.attributes.Entite |') %></th>
+    <th><%= t('services.attributes.Nom_prenom_demandeur |') %></th>
+    <th><%= t('services.attributes.Fonction_demandeur |') %></th>
+    <th><%= t('services.attributes.Ressources_DQI |') %></th>
+    <th><%= t('services.attributes.Domaine_activite |') %></th>
+    <th><%= t('services.attributes.Offre_service |') %></th>
+    <th><%= t('services.attributes.Charges_DQI |') %></th>
+    <th><%= t('services.attributes.Remarques |') %></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @gd.each do |suivi| %>
+  <tr>
+    <td><%= suivi.id %></td>
+    <td><%= suivi.Reference_Service %></td>
+    <td><%= suivi.Date_signature_contrat %></td>
+    <td><%= suivi.Date_debut_service %></td>
+    <td><%= suivi.Date_previsionnelle_fin_service %></td>
+    <td><%= suivi.Date_fin_service %></td>
+    <td><%= suivi.Statut_service %></td>
+    <td><%= suivi.Societe %></td>
+    <td><%= suivi.Entite %></td>
+    <td><%= suivi.Nom_prenom_demandeur %></td>
+    <td><%= suivi.Fonction_demandeur  %></td>
+    <td><%= suivi.Ressources_DQI  %></td>
+    <td><%= suivi.Domaine_activite %></td>
+    <td><%= suivi.Offre_service %></td>
+    <td><%= suivi.Charges_DQI %></td>
+    <td><%= suivi.Remarques %></td>
+  </tr>
+<% end %>
+
+</table>
+
+</div>
